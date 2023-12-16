@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Páginas Útiles</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #1c1c1c;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.5s;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        main {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .app-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .app-card {
+            background-color: #2c2c2c;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.5s;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            background-color: #3c3c3c;
+        }
+
+        .app-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #3498db;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #3498db;
+        }
+
+        p {
+            color: #888;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #searchForm {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        #searchInput {
+            padding: 8px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        #searchButton,
+        #clearButton {
+            padding: 8px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        #searchButton {
+            background-color: #3498db;
+            margin-right: 5px;
+        }
+
+        #clearButton {
+            background-color: #e74c3c;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Guía de Páginas Útiles</h1>
+    </header>
+    <nav>
+        <form id="searchForm">
+            <input type="text" id="searchInput" placeholder="Buscar...">
+            <button type="button" id="searchButton" onclick="buscar()">Buscar</button>
+            <button type="button" id="clearButton" onclick="limpiarBusqueda()">Limpiar</button>
+        </form>
+    </nav>
+    <main>
+        <div class="app-container" id="appContainer">
+            <!-- Aplicaciones predeterminadas se cargarán aquí -->
+            <!-- ... (resto del contenido se mantiene igual) -->
+        </div>
+    </main>
+    <script>
+        /* Funciones JavaScript aquí */
+
+        // Datos de aplicaciones
+        var aplicaciones = [
+            { nombre: "Calculadora", descripcion: "Realiza cálculos matemáticos.", url: "https://www.online-calculator.com/es/", icono: "fa-calculator" },
+            { nombre: "Editor de Texto", descripcion: "Crea y edita documentos de texto.", url: "https://www.editpad.org/es", icono: "fa-file-alt" },
+            { nombre: "Convertidor de Música", descripcion: "Convierte archivos de música a diferentes formatos.", url: "https://www.y2mate.com/es783/youtube-mp3", icono: "fa-music" },
+            { nombre: "Convertidor de PDF a Word", descripcion: "Convierte archivos PDF a documentos de Word.", url: "https://smallpdf.com/es/pdf-a-word", icono: "fa-file-pdf" },
+            { nombre: "Diccionario", descripcion: "Encuentra definiciones de palabras.", url: "https://www.wordreference.com/definicion/", icono: "fa-book" },
+            { nombre: "Editor de Fotos", descripcion: "Edita tus fotos en línea.", url: "https://www.befunky.com/es/opciones/editor-de-fotos/", icono: "fa-camera" },
+            { nombre: "Antivirus en Línea", descripcion: "Escanea tu dispositivo en busca de virus.", url: "https://www.eset.com/es/hogar/online-scanner/", icono: "fa-shield-alt" },
+            { nombre: "Traductor", descripcion: "Traduce texto a diferentes idiomas.", url: "https://www.deepl.com/es/translator/q/es/traductor+ingl%C3%A9s+espa%C3%B1ol/en/english+spanish+translator/fb681a18", icono: "fa-language" },
+            { nombre: "Removedor de Voz", descripcion: "Elimina la voz de archivos de audio.", url: "https://vocalremover.media.io/app/?lang=es", icono: "fa-microphone-slash" },
+            { nombre: "Gnula - Películas", descripcion: "Disfruta de películas en línea.", url: "https://gnula.nu/", icono: "fa-film" },
+            { nombre: "Geogebra Clásica", descripcion: "Explora herramientas matemáticas interactivas.", url: "https://www.geogebra.org/classic", icono: "fa-calculator" },
+            { nombre: "HDFull - Películas", descripcion: "Visualiza películas en alta definición.", url: "https://hdfull.sbs/", icono: "fa-film" },
+            { nombre: "Televisión Libre - Fútbol", descripcion: "Mira transmisiones de fútbol en línea.", url: "https://vercanalesonline.com/", icono: "fa-tv" },
+            { nombre: "Deportes TV HHD", descripcion: "Disfruta de transmisiones deportivas en alta definición.", url: "#", icono: "fa-tv" },
+            { nombre: "Veed", descripcion: "Edición de video en línea.", url: "https://www.veed.io/", icono: "fa-video" },
+            { nombre: "Novoresume", descripcion: "Crea currículums de aspecto profesional.", url: "https://novoresume.com/", icono: "fa-file-alt" },
+            { nombre: "Remove.bg", descripcion: "Elimina el fondo de tus imágenes.", url: "https://www.remove.bg/", icono: "fa-image" },
+            { nombre: "Office.com", descripcion: "Accede a las aplicaciones de Microsoft Office en línea.", url: "https://www.office.com/", icono: "fa-building" },
+            { nombre: "Pixlr X", descripcion: "Edita fotos en línea con esta potente herramienta.", url: "https://pixlr.com/x/", icono: "fa-camera" },
+            { nombre: "Photopea", descripcion: "Editor de imágenes en línea similar a Photoshop.", url: "https://www.photopea.com/", icono: "fa-camera" },
+            { nombre: "Mixkit", descripcion: "Recursos gratuitos para tus proyectos multimedia.", url: "https://mixkit.co/", icono: "fa-video" },
+            { nombre: "Interfacer", descripcion: "Explora interfaces de usuario inspiradoras.", url: "https://interfacer.xyz/", icono: "fa-desktop" },
+            { nombre: "Rawpixel", descripcion: "Descarga imágenes de alta calidad de forma gratuita.", url: "https://www.rawpixel.com/", icono: "fa-image" },
+            { nombre: "Museopen", descripcion: "Recursos musicales gratuitos y de dominio público.", url: "https://musopen.org/", icono: "fa-music" },
+            { nombre: "Omni Calculator", descripcion: "Calculadora en línea con diversas funciones.", url: "https://www.omnicalculator.com/", icono: "fa-calculator" },
+            { nombre: "FlightRadar", descripcion: "Sigue vuelos en tiempo real en todo el mundo.", url: "https://www.flightradar24.com/", icono: "fa-plane" },
+            { nombre: "Soundscape", descripcion: "Explora paisajes sonoros y efectos de sonido.", url: "https://soundscape.world/", icono: "fa-volume-up" }
+        ];
+
+        function cargarAplicaciones(aplicacionesAMostrar) {
+            var container = document.getElementById("appContainer");
+            container.innerHTML = "";
+
+            aplicacionesAMostrar.forEach(function (app) {
+                var card = document.createElement("div");
+                card.classList.add("app-card");
+                card.onclick = function () { mostrarApp(app.url); };
+                card.innerHTML = `
+                    <i class="fas ${app.icono} app-icon"></i>
+                    <h2>${app.nombre}</h2>
+                    <p>${app.descripcion}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function buscar() {
+            var searchTerm = document.getElementById("searchInput").value.toLowerCase().trim();
+            var aplicacionesFiltradas = aplicaciones.filter(function (app) {
+                return app.nombre.toLowerCase().includes(searchTerm) || app.descripcion.toLowerCase().includes(searchTerm);
+            });
+
+            // Mostrar solo las aplicaciones filtradas
+            cargarAplicaciones(aplicacionesFiltradas);
+        }
+
+        function limpiarBusqueda() {
+            document.getElementById("searchInput").value = "";
+            cargarAplicaciones(aplicaciones);
+        }
+
+        // Llamar a la función de carga inicial
+        cargarAplicaciones(aplicaciones);
+        
+        function mostrarApp(url) {
+            window.open(url);
+        }
+    </script>
+</body>
+
+</html>
